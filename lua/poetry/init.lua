@@ -11,11 +11,11 @@ M.execute_poetry_command = function(args)
 		command = config.cmd,
 		args = args.fargs,
 		on_exit = function(j, return_val)
+			local result = table.concat(j:result(), "\n")
 			if return_val == 0 then
-				local result = table.concat(j:result(), "\n")
 				vim.notify(result)
 			else
-				vim.notify("Error running poetry", vim.log.levels.ERROR)
+				vim.notify("Error running poetry: " .. result, vim.log.levels.ERROR)
 			end
 		end,
 		on_stderr = function(_, data)
