@@ -18,11 +18,6 @@ M.execute_poetry_command = function(args)
 				vim.notify("Error running poetry: " .. result, vim.log.levels.ERROR)
 			end
 		end,
-		on_stderr = function(_, data)
-			if data then
-				vim.notify("Poetry error: " .. data, vim.log.levels.ERROR)
-			end
-		end,
 	}):start()
 end
 
